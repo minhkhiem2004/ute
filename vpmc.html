@@ -1,0 +1,451 @@
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <link rel="stylesheet" href="static/css/trangcon.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+</head>
+<style>.left-tang-trangcon {
+    width: 35%;
+}
+
+.right-phong-trangcon {
+    width: 65%;
+}
+</style>
+<body>
+<div class="content">
+    <!-- Left menu -->
+    <div class="left-menu">
+        <div class="header-trangcon">
+            <div class="left-logo">
+                <a href="map.html"><img src="static/images/map/logo.webp" alt=""></a>
+            </div>
+            <div class="right-title">"One stop" office</div>
+        </div>
+
+        <div class="menu-trangcon">
+            <!-- DS tầng -->
+            <div class="left-tang-trangcon">
+                <div class="container-tang current_tang" id="vpmc" style="border-radius: 0px 20px 20px 0px;">"One stop"
+                    office
+                </div>
+            </div>
+            <!-- Danh sách phòng -->
+            <div class="right-phong-trangcon">
+                <div class="container-all-phong vpmc">
+                    <div class="container-phong current_phong" id="ttchung">
+                        <div class="title-phong">General Information</div>
+                        <div class="line"></div>
+                    </div>
+                    <div class="container-phong" id="o1">
+                        <div class="title-phong">1.1 Cabin number 1</div>
+                        <div class="line"></div>
+                    </div>
+                    <div class="container-phong" id="o5">
+                        <div class="title-phong">1.2 Cabin number 5</div>
+                        <div class="line"></div>
+                    </div>
+                    <div class="container-phong" id="o6">
+                        <div class="title-phong">1.3 Cabin number 6</div>
+                        <div class="line"></div>
+                    </div>
+                    <div class="container-phong" id="o91011">
+                        <div class="title-phong">1.4 Cabin numbers 9, 10, 11</div>
+                        <div class="line"></div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <div class="black-bg"></div>
+    <!-- Right Content -->
+    <div class="right-content">
+        <div class="right-top-header">
+            <div class="right-top-search">
+                <div class="parent-header-search">
+                    <svg id="search_btn" width="32" height="32" viewBox="0 0 32 32" fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <linearGradient id="paint0_linear" x1="16.0001" y1="2.66667" x2="16.0001" y2="29.3333"
+                                        gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#FF8989"/>
+                            <stop offset="1" stop-color="#FA5252"/>
+                        </linearGradient>
+                        <linearGradient id="paint1_linear" x1="14.6668" y1="10.6667" x2="14.6668" y2="13.3333"
+                                        gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#FF8989"/>
+                            <stop offset="1" stop-color="#FA5252"/>
+                        </linearGradient>
+                        <linearGradient id="paint2_linear" x1="12.6668" y1="16" x2="12.6668" y2="18.6667"
+                                        gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#FF8989"/>
+                            <stop offset="1" stop-color="#FA5252"/>
+                        </linearGradient>
+                        <path id="path_search1"
+                              d="M28.5334 24.8L24.8001 21.0667C26.0001 19.2 26.6667 17.0667 26.6667 14.6667C26.6667 8 21.3334 2.66667 14.6667 2.66667C8.00008 2.66667 2.66675 8 2.66675 14.6667C2.66675 21.3333 8.00008 26.6667 14.6667 26.6667C17.0667 26.6667 19.2001 26 21.0667 24.8L24.8001 28.5333C25.8667 29.6 27.4667 29.6 28.5334 28.5333C29.6001 27.4667 29.6001 25.8667 28.5334 24.8ZM14.6667 24C9.46675 24 5.33341 19.8667 5.33341 14.6667C5.33341 9.46667 9.46675 5.33333 14.6667 5.33333C19.8667 5.33333 24.0001 9.46667 24.0001 14.6667C24.0001 19.8667 19.8667 24 14.6667 24Z"/>
+                        <path id="path_search2"
+                              d="M18.6668 10.6667H10.6668C9.86683 10.6667 9.3335 11.3333 9.3335 12C9.3335 12.8 9.86683 13.3333 10.6668 13.3333H18.6668C19.4668 13.3333 20.0002 12.8 20.0002 12C20.0002 11.3333 19.4668 10.6667 18.6668 10.6667Z"/>
+                        <path id="path_search3"
+                              d="M14.6668 16H10.6668C9.86683 16 9.3335 16.5333 9.3335 17.3333C9.3335 18.1333 9.86683 18.6667 10.6668 18.6667H14.6668C15.4668 18.6667 16.0002 18.1333 16.0002 17.3333C16.0002 16.6667 15.4668 16 14.6668 16Z"/>
+                    </svg>
+                    <input id="input_search" type="text" placeholder="Search department...">
+                </div>
+                <div class="search_recommend" id="result">
+                    <div class="recommend_content" style="margin-top:36px">
+                        <div class="content-text 1 a2 tang9 khoa_cntt1" onclick="myFunction(this)">
+                            <div class="recommend_text "> Faculty of Information Technology</div>
+                        </div>
+                        <div class="content-text 1 a1 tang1 khoa_dpt" onclick="myFunction(this)">
+                            <div class="recommend_text">Faculty of Multimedia</div>
+                        </div>
+                        <div class="content-text 1 a1 tang1 phong_gv" onclick="myFunction(this)">
+                            <div class="recommend_text"> Educational Affairs Office</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="close-iframe">
+                <img src="static/images/trangcon/close.svg" alt="">
+            </div>
+        </div>
+        <div class="right-bottom-content">
+            <div class="right-bottom-container">
+                <div class="right-bottom-bg"></div>
+
+                <!----TT chung -->
+                <div class="right-bottom-des ttchung">
+                    <div class="left-img-phong">
+                        <div class="img-phong">
+                            <img src="static/images/trangcon/matcat/vpmc/tongquanvpmc.png" alt="">
+                        </div>
+                    </div>
+                    <div class="right-des-phong">
+                        <div class="des-phong">
+                            <div class="container-des">
+                                <div class="name-phong">"One stop" office</div>
+                                <div class="content-phong">
+                                    <ul>
+                                        <li>In order to create convenience for candidates, students and parents to
+                                            contact and handle common administrative procedures related to the
+                                            enrollment process and organization of training at Ha Dong Campus, Institute
+                                            of Posts and Telecommunications Technology organizes and arranges a
+                                            "one-stop" Department to receive and work with candidates and students
+                                            (students) according to the "one-stop mechanism".
+                                        </li>
+                                        <ul>
+                                            <li>Location: "One-stop" transaction department - Ha Dong training
+                                                facility
+                                            </li>
+                                            <li>Work content: information guidance; consulting and admission; collect
+                                                and pay tuition and fees; Granting and spending scholarships and student
+                                                benefits; Issue and confirm documents and transcripts; resolve student
+                                                procedures and regimes; resolve procedures for end-of-course exams and
+                                                graduation exams; Return student records and graduation diplomas
+
+                                            </li>
+                                            <li>Working time:</li>
+                                            <ul>
+                                                <li>– Working days: morning from 8:30 a.m. to 11:30 a.m.; Afternoon from
+                                                    2:00 p.m. to 4:30 p.m
+                                                </li>
+                                                <li>– Outside office hours: 09:00 to 11:00, every Saturday (Accounting
+                                                    department)
+                                                </li>
+                                            </ul>
+                                        </ul>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--------------Ô 1-- -->
+                <div class="right-bottom-des tang o1">
+                <div class="left-img-phong">
+                    <div class="img-phong">
+                        <img src="static/images/trangcon/matcat/vpmc/o1.png" alt="">
+                    </div>
+                </div>
+                <div class="right-des-phong">
+                    <div class="des-phong">
+                        <div class="container-des">
+                            <div class="name-phong">Cabin number 1</div>
+                            <div class="content-phong">
+                                <ul>
+                                    <li>Advising education enrollment</li>
+                                    <li>Receive requests, questions, and recommendations related to certificates and
+                                        diplomas
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!---------------Ô 5-- -->
+            <div class="right-bottom-des tang o5">
+                <div class="left-img-phong">
+                    <div class="img-phong">
+                        <img src="static/images/trangcon/matcat/vpmc/o5.png" alt="">
+                    </div>
+                </div>
+                <div class="right-des-phong">
+                    <div class="des-phong">
+                        <div class="container-des">
+                            <div class="name-phong">Cabin Number 5</div>
+                            <div class="content-phong">
+                                <ul>
+                                    <li>Administrative procedures, study regime for students (transcript, suspension,
+                                        withdrawal, re-study, reservation, learning results, training, scholarships,
+                                        studying to improve grades, registration for graduation exams , graduation
+                                        consideration; postponement, late payment of tuition fees, etc.)
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-------------Ô 6-- -->
+            <div class="right-bottom-des tang o6">
+                <div class="left-img-phong">
+                    <div class="img-phong">
+                        <img src="static/images/trangcon/matcat/vpmc/o6.png" alt="">
+                    </div>
+                </div>
+                <div class="right-des-phong">
+                    <div class="des-phong">
+                        <div class="container-des">
+                            <div class="name-phong">Cabin Number 6</div>
+                            <div class="content-phong">
+                                <ul>
+                                    <li>Administrative procedures, student regimes (introduction letters, confirmation
+                                        letters, priority bus ticket purchases, applications for tuition exemptions,
+                                        room loans, student policies, scholarships, rewards, etc.)
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-------------Ô 9-- -->
+            <div class="right-bottom-des tang o91011">
+            <div class="left-img-phong">
+                <div class="img-phong">
+                    <img src="static/images/trangcon/matcat/vpmc/o91011.png" alt="">
+                </div>
+            </div>
+            <div class="right-des-phong">
+                <div class="des-phong">
+                    <div class="container-des">
+                        <div class="name-phong">Cabin Numbers 9, 10, 11</div>
+                        <div class="content-phong">
+                            <ul>
+                                <li>Collect and pay tuition and fees; Payment of scholarships, rewards, etc.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</div>
+</div>
+</body>
+<script>
+    var id_tang = null;
+    var id_khoa = null;
+    var add_state = 0;
+    jQuery(document).ready(function ($) {
+        if (window.history && window.history.pushState) {
+            $(window).on('popstate', function () {
+                id_tang = null;
+                id_khoa = null;
+                localStorage.removeItem("key");
+                parent.window.$('#web').css({'display': 'block'});
+                parent.window.$('#modal_vpmc').css({'display': 'none'});
+                add_state = 0;
+            });
+        }
+    });
+    $(document).ready(function () {
+        runEffect()
+    });
+    var runEffect = function () {
+        var elem = parent.window.document.getElementById("modal_vpmc");
+        var theCSSprop = window.getComputedStyle(elem, null).getPropertyValue("display");
+        if (theCSSprop == 'block') {
+            if (add_state == 0) {
+                window.history.pushState('forward', null, '');
+                add_state = 1;
+            }
+        }
+        setTimeout(function () {
+            runEffect();
+        }, 100)
+    }
+
+    // Xử lý Search
+    function myFunction(ele) {
+        let class_list = ele.getAttribute("class");
+        localStorage.setItem("key", class_list);
+        console.log(class_list)
+        if (class_list != null) {
+            class_list = class_list.split(" ");
+            $('#result').css({'display': 'none'});
+            $('.black-bg').css({'display': 'none'});
+            if (class_list[1] == "1") {
+                // Xử lý chuyển trang con khác
+                if (class_list[2] != "modal_vpmc") {
+                    console.log("search")
+                    parent.window.$('#modal_vpmc').css({'display': 'none'});
+                    parent.window.$('#modal_' + class_list[2]).css({'display': 'block'});
+                }
+                // Xử lý không chuyển trang con
+                else {
+                    id_tang = class_list[3]
+                    id_khoa = class_list[4]
+                    let list_tang = document.querySelectorAll(".container-tang");
+                    let list_phong = document.querySelectorAll(".container-phong");
+                    $('.container-all-phong').css({'display': 'none'});
+                    $('.right-bottom-des').css({'display': 'none'});
+                    for (let i = 0; i < list_tang.length; i++) {
+                        list_tang[i].className = 'container-tang';
+                    }
+                    for (let i = 0; i < list_phong.length; i++) {
+                        list_phong[i].className = 'container-phong';
+                    }
+                    localStorage.removeItem('key')
+                    $('.parent-header-search').css({
+                        'background': '#F4EEF0',
+                        'border-bottom-right-radius': '16px',
+                        'border-bottom-left-radius': '16px'
+                    });
+                    setTimeout(function () {
+                        $('.' + id_tang).css({'display': 'block'});
+                        $('.' + id_khoa).css({'display': 'flex'});
+                        if (!$('#' + id_tang).hasClass('current_tang')) {
+                            $('#' + id_tang).addClass('current_tang');
+                        }
+                        if (!$('#' + id_khoa).hasClass('current_phong')) {
+                            $('#' + id_khoa).addClass('current_phong');
+                        }
+                    }, 10);
+                }
+            } else {
+                //Xử lý search không trang con.
+                parent.window.$('#web').css({'display': 'block'});
+                parent.window.$('.container-menu').css('display', 'none');
+                parent.window.$('.' + class_list[2]).css({'display': 'block'});
+                parent.window.$('.title_tooltip.' + class_list[3]).css({'display': 'block'});
+                let obj = parent.window.$('.' + class_list[3]).parent()
+                if (!obj.find('.pop').hasClass('active')) {
+                    obj.find('.pop').addClass('active');
+                }
+                setTimeout(function () {
+                    localStorage.removeItem("key");
+                }, 10);
+            }
+        }
+    }
+
+    // Xử lý tìm kiếm
+    var current_search = 0;
+    $.ajaxSetup({cache: false});
+    $('#input_search').keyup(function () {
+        $('#result').css({'display': 'block'});
+        $('#result').html('');
+        var searchField = $('#input_search').val();
+        if (searchField == "") {
+            current_search = 0;
+            $('#result').append(' <div class="recommend_content" style="margin-top:12px"><div class="content-text 1 a2 tang9 khoa_cntt1" onclick="myFunction(this)"><div class="recommend_text "> Faculty of Information Technology</div>  </div> </div><div class="recommend_content"> <div class="content-text 1 a1 tang1 phong_gv" onclick="myFunction(this)"><div class="recommend_text"> Educational Affairs Office</div></div> </div><div class="recommend_content"><div class="content-text 1 a1 tang1 khoa_dpt" onclick="myFunction(this)">             <div class="recommend_text" >Faculty of Multimedia</div>  </div> </div>')
+            return
+        }
+        var expression = new RegExp(searchField, "i");
+        $.getJSON('./static/data.json', function (data) {
+            $('#result').html('');
+            $.each(data, function (key, value) {
+                if (value.name.search(expression) != -1) {
+                    current_search = 1;
+                    $('.no_result').remove();
+                    if (value.status == 1) {
+                        $('#result').append('<div class="recommend_content ' + value.status + ' ' + value.toa + ' ' + value.tang + ' ' + value.khoa + '" onclick="myFunction(this)"><div class="content-text"><div class="recommend_text">' + value.name + '</div></div></div>')
+                    } else {
+                        $('#result').append('<div class="recommend_content ' + value.status + ' ' + value.category + ' ' + value.id + '" onclick="myFunction(this)"><div class="content-text"><div class="recommend_text">' + value.name + '</div></div></div>')
+                    }
+                }
+                let list_recommend = document.querySelectorAll(".recommend_content");
+                if (list_recommend.length == 0) {
+                    current_search = 0;
+                    $('#result').append('<div class="recommend_content no_result"style="height: 48px;" ><div class="content-text" style="background-color: white;color: #3366FF;"><div style="height: 32px;">Từ khoá tìm kiếm không phù hợp, vui lòng tìm theo gợi ý dưới đây!</div></div></div> <div class="recommend_content" style="margin-top:12px"><div class="content-text 1 a2 tang9 khoa_cntt1" onclick="myFunction(this)"><div class="recommend_text "> Faculty of Information Technology</div>  </div> </div><div class="recommend_content"> <div class="content-text 1 a1 tang1 phong_gv" onclick="myFunction(this)"><div class="recommend_text"> Educational Affairs Office</div></div> </div><div class="recommend_content"><div class="content-text 1 a1 tang1 khoa_dpt" onclick="myFunction(this)">             <div class="recommend_text" >Faculty of Multimedia</div>  </div> </div>')
+                }
+            });
+        });
+    });
+
+
+    // Xử lý click menu tầng
+    let list_tang = document.querySelectorAll(".container-tang");
+    for (let i = 0; i < list_tang.length; i++) {
+        list_tang[i].onclick = function () {
+            $('.container-all-phong').css({'display': 'none'});
+            id_tang = $(this).attr('id');
+            console.log(id_tang)
+            $('.right-bottom-des').css({'display': 'none'});
+            let j = 0;
+            while (j < list_tang.length) {
+                list_tang[j++].className = 'container-tang';
+            }
+            list_tang[i].className = 'container-tang current_tang';
+            $('.' + id_tang).css({'display': 'block'});
+            $('.full' + id_tang).css({'display': 'flex'});
+        }
+    }
+    // focus input
+    $("#input_search").focus(function () {
+        $('#result').css({'display': 'block'});
+        $('.black-bg').css({'display': 'block'});
+        $('.parent-header-search').css({
+            'background': 'white',
+            'border-bottom-right-radius': 0,
+            'border-bottom-left-radius': 0
+        });
+
+    });
+    $(".black-bg").click(function () {
+        $('#result').css({'display': 'none'});
+        $('.black-bg').css({'display': 'none'});
+        $('.parent-header-search').css({
+            'background': '#F4EEF0',
+            'border-bottom-right-radius': '16px',
+            'border-bottom-left-radius': '16px'
+        });
+    })
+
+    // Xử lý click menu phòng
+    let list_phong = document.querySelectorAll(".container-phong");
+    for (let i = 0; i < list_phong.length; i++) {
+        list_phong[i].onclick = function () {
+            id_khoa = $(this).attr('id');
+            $('.right-bottom-des').css({'display': 'none'});
+            console.log(id_khoa)
+            let j = 0;
+            while (j < list_phong.length) {
+                list_phong[j++].className = 'container-phong';
+            }
+            list_phong[i].className = 'container-phong current_phong';
+            $('.' + id_khoa).css({'display': 'flex'});
+        }
+    }
+
+    $('.close-iframe').click(function () {
+        parent.window.$('#web').css({'display': 'block'});
+        parent.window.$('#modal_vpmc').css({'display': 'none'});
+        localStorage.removeItem("key");
+    })
+</script>

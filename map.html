@@ -1,0 +1,1220 @@
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<!-- index2.jsp -->
+
+<head>
+    <title>PTIT's Map</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="static/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="static/images/favicon.ico" type="image/x-icon">
+    <link href="static/css/owl.carousel.css" rel="stylesheet">
+    <link href="static/css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="preload" href="static/images/home/bg-home.webp" as="image" type="image/png">
+    <link rel="preload" href="static/images/map/bg-map.png" as="image" type="image/png">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<style>#input_search:focus::placeholder {
+    color: transparent;
+}
+
+.search_recommend {
+    display: none;
+    z-index: 2;
+    margin-top: 3.7vw;
+    background-color: #F1F9FA;
+    position: absolute;
+    margin-left: 36vw;
+    width: 28vw;
+    max-height: 300px;
+    overflow: auto;
+    border-radius: 0px 0px 16px 16px;
+    min-height: 100px;
+    box-shadow: 0px 8px 16px rgb(130 136 160 / 10%);
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px #EDF1F7;;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #BFC9DD;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #EDF1F7;
+}
+
+.recommend_content {
+    margin-top: 6px;
+    margin-bottom: 6px;
+    display: block;
+    margin-left: 30px;
+    margin-right: 30px;
+    display: flex;
+}
+
+/* .content-text{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 16px;
+    margin-left:6px;
+    margin-right: 6px;
+    background: #f8e2e2;
+    border-radius: 100px;
+    height: 36px;
+} */
+.content-text:hover {
+    color: #E23C47;
+}
+
+.recommend_text {
+    cursor: pointer;
+    text-align: center;
+    padding-right: 16px;
+    padding-left: 16px;
+}
+
+.black-bg {
+    position: absolute;
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.container-trangcon {
+    position: absolute;
+}
+
+#floor-ttkn {
+    margin-top: -15%;
+    margin-left: 6%;
+}
+
+#floor-hta2 {
+    margin-top: 7%;
+    margin-left: 2%;
+}
+
+.dialog_clb {
+    display: none;
+    position: absolute;
+    width: 60%;
+    height: 60%;
+    top: 20%;
+    left: 20%;
+    z-index: 20;
+    background-color: white;
+}
+
+.black_bg_clb {
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
+.active {
+    display: block;
+}
+
+.header_clb {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 40px;
+    color: #101426;
+}
+
+.type_clb {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    color: #101426;
+}
+
+.child_clb {
+    cursor: pointer;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    color: #283352;
+    margin-left: 20px;
+}
+
+.contain_type_clb {
+    width: 100%;
+}
+
+.list_clb {
+    width: 100%;
+    height: calc(100% - 10px);
+    overflow: auto;
+}
+</style>
+<body style="overflow: hidden;">
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TFMX9FS"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div id="loader" class="alCenter" style="display: block;">
+    <p style="position: relative;margin-top: 30vh;">
+        <img src="static/images/map/logo.webp" width="95px" height="120px" alt="">
+    </p>
+    <p style="font-family: Roboto;font-style: normal;font-weight: 500;font-size: 28px;
+    line-height: 36px;margin-top: 20px;margin-bottom: 20px;
+    color: #283352;">Welcome to PTIT</p>
+    <p>
+    <div class="bar-container">
+        <div class="loader1">
+            <span class="loader-bar"></span>
+        </div>
+    </div>
+    </p>
+    <p style="margin-top:20px;font-size: 18px;line-height: 24px;text-align: center;color: #39476A;">Loading...</p>
+</div>
+
+
+<div id="web" style="display: none;z-index:1000; ">
+    <div class="search-map">
+        <svg id="search_btn" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <linearGradient id="paint0_linear" x1="16.0001" y1="2.66667" x2="16.0001" y2="29.3333"
+                            gradientUnits="userSpaceOnUse">
+                <stop stop-color="#FF8989"/>
+                <stop offset="1" stop-color="#FA5252"/>
+            </linearGradient>
+            <linearGradient id="paint1_linear" x1="14.6668" y1="10.6667" x2="14.6668" y2="13.3333"
+                            gradientUnits="userSpaceOnUse">
+                <stop stop-color="#FF8989"/>
+                <stop offset="1" stop-color="#FA5252"/>
+            </linearGradient>
+            <linearGradient id="paint2_linear" x1="12.6668" y1="16" x2="12.6668" y2="18.6667"
+                            gradientUnits="userSpaceOnUse">
+                <stop stop-color="#FF8989"/>
+                <stop offset="1" stop-color="#FA5252"/>
+            </linearGradient>
+            <path id="path_search1"
+                  d="M28.5334 24.8L24.8001 21.0667C26.0001 19.2 26.6667 17.0667 26.6667 14.6667C26.6667 8 21.3334 2.66667 14.6667 2.66667C8.00008 2.66667 2.66675 8 2.66675 14.6667C2.66675 21.3333 8.00008 26.6667 14.6667 26.6667C17.0667 26.6667 19.2001 26 21.0667 24.8L24.8001 28.5333C25.8667 29.6 27.4667 29.6 28.5334 28.5333C29.6001 27.4667 29.6001 25.8667 28.5334 24.8ZM14.6667 24C9.46675 24 5.33341 19.8667 5.33341 14.6667C5.33341 9.46667 9.46675 5.33333 14.6667 5.33333C19.8667 5.33333 24.0001 9.46667 24.0001 14.6667C24.0001 19.8667 19.8667 24 14.6667 24Z"/>
+            <path id="path_search2"
+                  d="M18.6668 10.6667H10.6668C9.86683 10.6667 9.3335 11.3333 9.3335 12C9.3335 12.8 9.86683 13.3333 10.6668 13.3333H18.6668C19.4668 13.3333 20.0002 12.8 20.0002 12C20.0002 11.3333 19.4668 10.6667 18.6668 10.6667Z"/>
+            <path id="path_search3"
+                  d="M14.6668 16H10.6668C9.86683 16 9.3335 16.5333 9.3335 17.3333C9.3335 18.1333 9.86683 18.6667 10.6668 18.6667H14.6668C15.4668 18.6667 16.0002 18.1333 16.0002 17.3333C16.0002 16.6667 15.4668 16 14.6668 16Z"/>
+        </svg>
+        <input id="input_search" type="text" placeholder="Search department...">
+    </div>
+    <div class="search_recommend" id="result">
+        <div class="recommend_content" style="margin-top:12px">
+            <div class="content-text 1 a2 tang9 khoa_cntt1" onclick="myFunction(this)">
+                <div class="recommend_text "> Faculty of Information Technology</div>
+            </div>
+        </div>
+        <div class="recommend_content">
+            <div class="content-text 1 a1 tang1 phong_gv" onclick="myFunction(this)">
+                <div class="recommend_text"> Educational Affairs Office</div>
+            </div>
+        </div>
+        <div class="recommend_content">
+            <div class="content-text 1 a1 tang1 khoa_dpt" onclick="myFunction(this)">
+                <div class="recommend_text">Faculty of Multimedia</div>
+            </div>
+        </div>
+    </div>
+    <img src="static/images/map/logo.webp" alt="" style="z-index: 1;" id="logo_map">
+    <div class="black-bg"></div>
+
+    <main>
+        <div class="prlx-ctn" id="prlx">
+            <div id="scene">
+                <div data-depth-x="0.5" data-depth-y="0.3" class="layer city">
+                    <div class="bg">
+                        <img src="static/images/map/bg-map.png">
+                    </div>
+                </div>
+                <div data-depth-x="0.55" data-depth-y="0.35" class="layer city">
+                    <div class="over people btnFile" id="floor-a1">
+                        <div class="typewriter">
+                            <h6>A1 Building</h6>
+                        </div>
+                        <div class="title_tooltip 1 a1 tang1 phong_gv">
+                            <div class="title-floor">
+                                <div class="header-title-floor"> Educational Affairs Office</div>
+                                <img class="next-to-trangcon" src="static/images/map/icon/next-in-map.svg" alt="">
+                            </div>
+                            <div class="des-foor">Location: 1st floor, building A1, has the function of updating news and new announcements from
+                                academy, from Educational Affairs Office.
+                            </div>
+                        </div>
+                        <div class="title_tooltip 1 a1 tang1 phong_tckt">
+                            <div class="title-floor">
+                                <div class="header-title-floor">Division of Finance and Accounting</div>
+                                <img class="next-to-trangcon" src="static/images/map/icon/next-in-map.svg" alt="">
+                            </div>
+                            <div class="des-foor">Location: 1st floor, building A1, Finance and Accounting Department
+                                collects tuition, fees and other revenues; Pay expenses according to prescribed regime.
+                            </div>
+                        </div>
+                        <div class="title_tooltip 1 a1 tang1 khoa_dpt">
+                            <div class="title-floor">
+                                <div class="header-title-floor">Faculty of Multimedia</div>
+                                <img class="next-to-trangcon" src="static/images/map/icon/next-in-map.svg" alt="">
+                            </div>
+                            <div class="des-foor">The Multimedia Faculty has the function of training and scientific
+                                research in the fields of Multimedia Technology and Multimedia Communications.
+                            </div>
+                        </div>
+                        <div class="title_tooltip 1 a1 tang1 phong_ctctsv" style="margin-top:10px;">
+                            <div class="title-floor">
+                                <div class="header-title-floor">Phòng CT và CTSV</div>
+                                <img class="next-to-trangcon" src="static/images/map/icon/next-in-map.svg" alt="">
+                            </div>
+                            <div class="des-foor">Phòng CT & CTSV tổ chức, triển khai, thực hiện, giám sát, kiểm tra,
+                                tổng hợp, đánh giá kết quả, tình hình hoạt động của các mặt công tác nêu trên theo nhiệm
+                                vụ được giao.
+                            </div>
+                        </div>
+                        <div class="title_tooltip 1 a1 tang1 phong_dt">
+                            <div class="title-floor">
+                                <div class="header-title-floor">Phòng Đào tạo</div>
+                                <img class="next-to-trangcon" src="static/images/map/icon/next-in-map.svg" alt="">
+                            </div>
+                            <div class="des-foor">Vị trí: Tầng 2 nhà A1, Phòng đào tạo có chức năng tổ chức, quản lý,
+                                điều hành công tác mở ngành đào tạo..
+                            </div>
+                        </div>
+                        <div class="title_tooltip 1 a1 tang1 phong_qlkhcn" style="width:370px;height: 220px;">
+                            <div class="title-floor" style="width:324px">
+                                <div class="header-title-floor">Phòng QL KHCN và HTQT</div>
+                                <img class="next-to-trangcon" src="static/images/map/icon/next-in-map.svg" alt="">
+                            </div>
+                            <div class="des-foor" style="width:324px">Vị trí: Tầng 2 nhà A1, Phòng Quản lý Khoa học công
+                                nghệ & HTQT có chức năng tổ chức triển khai thực hiện, giám sát, kiểm tra, tổng hợp,
+                                đánh giá hoạt động khoa học công nghệ và hợp tác quốc tế theo nhiệm vụ được giao.
+                            </div>
+                        </div>
+                        <div class="title_tooltip 1 a1 tang1 cdit">
+                            <div class="title-floor" style="width:300px;margin-left:24px">
+                                <div class="header-title-floor">Information Technology and Communications Institute - CDIT</div>
+                                <img class="next-to-trangcon" src="static/images/map/icon/next-in-map.svg" alt="">
+                            </div>
+                            <div class="des-foor">CDIT functions and tasks is to research and apply scientific and technological achievements into products, services and training programs to contribute to promoting the country's development.
+                            </div>
+                        </div>
+                        <div class="title_tooltip 1 a1 tang1 ttdt">
+                            <div class="title-floor">
+                                <div class="header-title-floor">Posts and Telecommunications Training Center 1</div>
+                                <img class="next-to-trangcon" src="static/images/map/icon/next-in-map.svg" alt="">
+                            </div>
+                            <div class="des-foor">Main functions and tasks of the center include:
+                                Organize distance learning for all educational levels; 
+                                Organize international training courses; 
+                                Implement international cooperation projects.
+                            </div>
+                        </div>
+                        <div class="title_tooltip 1 a1 tang1 ttdtqt">
+                            <div class="title-floor">
+                                <div class="header-title-floor">Center for International Education</div>
+                                <img class="next-to-trangcon" src="static/images/map/icon/next-in-map.svg" alt="">
+                            </div>
+                            <div class="des-foor">Location: 5th floor, building A1, the Center has the function of developing, organizing and managing activities and programs on international training
+
+                            </div>
+                        </div>
+                        <div class="pop">
+                            <img class="btn-a1" src="static/images/map/icon_place.svg">
+                        </div>
+                        <div class="effect btn-a1" style="display: none;">
+                            <span></span><span></span>
+                        </div>
+                    </div>
+                    <div class="over people btnFile" id="floor-a2">
+                        <div class="typewriter">
+                            <h6>A2 Building</h6>
+                        </div>
+                        <div class="title_tooltip 1 a2 tangg ttkt" style="width:380px;height:240px">
+                            <div class="title-floor">
+                                <div class="header-title-floor">TTKT và ĐBCLGD</div>
+                                <img class="next-to-trangcon" src="static/images/map/icon/next-in-map.svg" alt="">
+                            </div>
+                            <div class="des-foor">Vị trí: Tầng G nhà A2, Trung tâm có chức năng tổ chức, triển khai công
+                                tác thi, kiểm tra và đánh giá kết quả học tập của sinh viên (đối với các hệ, các khoá
+                                đào tạo được Học viện giao) tại Cơ sở Hà Đông và đảm bảo các điều kiện đảm bảo chất
+                                lượng các hệ đào tạo của Học viện.
+                            </div>
+                        </div>
+                        <div class="title_tooltip 1 a2 tangg ttdv" style="height: 216px;">
+                            <div class="title-floor">
+                                <div class="header-title-floor">Trung tâm Dịch vụ</div>
+                                <img class="next-to-trangcon" src="static/images/map/icon/next-in-map.svg" alt="">
+                            </div>
+                            <div class="des-foor">Vị trí: Tầng G nhà A2, Trung tâm có chức năng tổ chức, quản lý, thực
+                                hiện các hoạt động dịch vụ, phục vụ cho các hoạt động của Học viện tại Cơ sở đào tạo
+                                phía Bắc của Học viện Công nghệ Bưu chính Viễn thông.
+                            </div>
+                        </div>
+                        <div class="title_tooltip 1 a2 tang9 khoa_ktdt1">
+                            <div class="title-floor">
+                                <div class="header-title-floor">Faculty of Electronic Engineering 1</div>
+                                <img class="next-to-trangcon" src="static/images/map/icon/next-in-map.svg" alt="">
+                            </div>
+                            <div class="des-foor">Faculty of Electronic Engineering 1 is a training unit under the Institute of PTIT with the function of training and scientific research in the field of Electricity - Electronics.
+                            </div>
+                        </div>
+                        <div class="title_tooltip 1 a2 tang9 khoa_cntt1">
+                            <div class="title-floor">
+                                <div class="header-title-floor">Faculty of Information Technology</div>
+                                <img class="next-to-trangcon" src="static/images/map/icon/next-in-map.svg" alt="">
+                            </div>
+                            <div class="des-foor"> Faculty of Information Technology 1 is a training unit under the PTIT with the function of training and scientific research in the field of Information Technology.
+                            </div>
+                        </div>
+                        <div class="title_tooltip 1 a2 tang10 khoa_attt">
+                            <div class="title-floor">
+                                <div class="header-title-floor">The Faculty of Information Security</div>
+                                <img class="next-to-trangcon" src="static/images/map/icon/next-in-map.svg" alt="">
+                            </div>
+                            <div class="des-foor">
+                                The Faculty of Information Security is a training unit under the PTIT; has the function of training and scientific research in the field of Information Security.
+
+                            </div>
+                        </div>
+
+                        <div class="title_tooltip 1 a2 tang9 khoa_qtkd1">
+                            <div class="title-floor">
+                                <div class="header-title-floor">Faculty of Business Administration 1</div>
+                                <img class="next-to-trangcon" src="static/images/map/icon/next-in-map.svg" alt="">
+                            </div>
+                            <div class="des-foor">Faculty of Business Administration 1 is a training unit under the PTIT with the function of training and scientific research in the field of business administration.
+                            </div>
+                        </div>
+                        <div class="title_tooltip 1 a2 tang10 khoa_vt1">
+                            <div class="title-floor">
+                                <div class="header-title-floor">Faculty of Telecommunications 1</div>
+                                <img class="next-to-trangcon" src="static/images/map/icon/next-in-map.svg" alt="">
+                            </div>
+                            <div class="des-foor">Faculty of Telecommunications 1 is a training unit under the PTIT with the function of training and scientific research in the field of electronics and communications.
+                            </div>
+                        </div>
+                        <div class="title_tooltip 1 a2 tang10 khoa_qtdtsdh">
+                            <div class="title-floor">
+                                <div class="header-title-floor">Khoa QT và ĐT Sau Đại học</div>
+                                <img class="next-to-trangcon" src="static/images/map/icon/next-in-map.svg" alt="">
+                            </div>
+                            <div class="des-foor">Khoa Quốc tế và Đào tạo Sau Đại học là ...</div>
+                        </div>
+                        <div class="title_tooltip 1 a2 tang10 khoa_cb1">
+                            <div class="title-floor">
+                                <div class="header-title-floor">Basic Department 1</div>
+                                <img class="next-to-trangcon" src="static/images/map/icon/next-in-map.svg" alt="">
+                            </div>
+                            <div class="des-foor">Basic Faculty 1 is a training unit under the PTIT with the function of training and scientific research in the fields of basic science, Foreign Languages and Education. Physical education – National defense
+                            </div>
+                        </div>
+                        <div class="title_tooltip 1 a2 tang10 khoa_tckt">
+                            <div class="title-floor">
+                                <div class="header-title-floor">Faculty of Finance and Accounting</div>
+                                <img class="next-to-trangcon" src="static/images/map/icon/next-in-map.svg" alt="">
+                            </div>
+                            <div class="des-foor">Faculty of Finance and Accounting is a training unit under the PTIT with the function of training and scientific research in the fields of finance, accounting, and auditing math.
+                            </div>
+                        </div>
+
+                        <div class="pop">
+                            <img class="btn-a2" src="static/images/map/icon_place.svg">
+                        </div>
+                        <div class="effect btn-a2" style="display: none;">
+                            <span></span><span></span>
+                        </div>
+                    </div>
+
+                    <div class="over people btnFile" id="floor-a3">
+                        <div class="typewriter">
+                            <h6>A3 Building</h6>
+                        </div>
+                        <div class="title_tooltip 1 a3 tang1 tttttv" style="width: 380px;height: 204px">
+                            <div class="title-floor" style="margin-top:10px">
+                                <div class="header-title-floor">TT thông tin thư viện</div>
+                                <img class="next-to-trangcon" src="static/images/map/icon/next-in-map.svg" alt="">
+                            </div>
+                            <div class="des-foor">
+                                Chức năng và nhiệm vụ: Trung tâm có chức năng quản lý chuyên môn, nghiệp vụ về thông tin
+                                – thư viện trong toàn Học viện; tổ chức và quản lý công tác thông tin – thư viện phục vụ
+                                hoạt động đào tạo và nghiên cứu khoa học tại Cơ sở Hà Đông
+                            </div>
+                        </div>
+                        <div class="pop">
+                            <img class="btn-a3" src="static/images/map/icon_place.svg">
+                        </div>
+                        <div class="effect btn-a3" style="display: none;">
+                            <span></span><span></span>
+                        </div>
+                    </div>
+                    <div class="over people btnFile" id="floor-vpmc">
+                        <div class="typewriter">
+                            <h6>"One stop" office</h6>
+                        </div>
+                        <div class="title_tooltip 1 a3 tang1 vpmc">
+                            <div class="title-floor">
+                                <div class="header-title-floor">"One stop" office</div>
+                                <img class="next-to-trangcon" src="static/images/map/icon/next-in-map.svg" alt="">
+                            </div>
+                            <div class="des-foor">"One stop" office is ...</div>
+                        </div>
+                        <div class="pop ">
+                            <img class="btn-vpmc" src="static/images/map/icon_place.svg">
+                        </div>
+                        <div class="effect btn-vpmc" style="display: none;">
+                            <span></span><span></span>
+                        </div>
+                    </div>
+                    <div class="over people btnFile" id="floor-ttkn">
+                        <div class="typewriter pointer-custom" style="margin-top:10px">
+                            <h6> Center for entrepreneurship and innovation</h6>
+                        </div>
+                        <div class="title_tooltip 1 a3 tang1 ttkn">
+                            <div class="title-floor">
+                                <div class="header-title-floor">TT Khởi nghiệp</div>
+                            </div>
+                            <div class="des-foor">
+                                Trung tâm khởi nghiệp và đổi mới sáng tạo
+                                Trung tâm Đổi mới Sáng tạo và Khởi nghiệp là một tổ chức thuộc Học viện Công nghệ Bưu
+                                chính Viễn thông bao gồm các nhà khoa học, các giảng viên, nghiên cứu viên trong, ngoài
+                                Học viện và các chuyên gia nước ngoài. Nghiên cứu phát triển sản phẩm khởi nghiệp đổi
+                                mới sáng tạo có tính ứng dụng cao. Chủ động đăng ký bản quyền và chuyển giao kết quả,
+                                sản phẩm khởi nghiệp đổi mới sáng tạo của Trung tâm theo các quy định hiện hành
+                            </div>
+                        </div>
+                        <div class="pop">
+                            <img src="static/images/map/icon_place.svg">
+                        </div>
+                        <div class="effect" style="display: none;">
+                            <span></span><span></span>
+                        </div>
+                    </div>
+                    <div class="over people btnFile" id="floor-hta1">
+                        <div class="typewriter">
+                            <h6>Hall A1</h6>
+                        </div>
+                        <div class="pop">
+                            <img src="static/images/map/icon_place.svg">
+                        </div>
+                        <div class="effect" style="display: none;">
+                            <span></span><span></span>
+                        </div>
+                    </div>
+                    <div class="over people btnFile" id="floor-hta2">
+                        <div class="typewriter">
+                            <h6> Hall A2</h6>
+                        </div>
+                        <div class="title_tooltip 1 a3 tang1 hta2">
+                            <div class="title-floor">
+                                <div class="header-title-floor">Hall A2</div>
+                            </div>
+                            <div class="des-foor">
+                                Hội trường A2-PTIT với sân khấu hiện đại, màn hình Led siêu xịn xò với sức chứa từ
+                                700-1.200 người; là nơi diễn ra các sự kiện: Lễ, Hội nghị, Cuộc thi có quy mô lớn của
+                                Thầy và Trò Học viện.
+                            </div>
+                        </div>
+                        <div class="pop">
+                            <img src="static/images/map/icon_place.svg">
+                        </div>
+                        <div class="effect" style="display: none;">
+                            <span></span><span></span>
+                        </div>
+                    </div>
+                    <div class="over people btnFile" id="floor-ct">
+                        <div class="typewriter">
+                            <h6>Canteen</h6>
+                        </div>
+                        <div class="title_tooltip 1 a3 tang1 canteen" style="width: 385px; height: 226px;">
+                            <div class="title-floor" style="margin-top:10px">
+                                <div class="header-title-floor">Canteen</div>
+                            </div>
+                            <div class="des-foor">
+                                Canteen Học viện: là nơi dành cho các bạn tụ họp, nạp năng lượng sau những giờ học căng
+                                thẳng bằng những món ăn, thức uống tươi ngon, bổ dưỡng với giá cả dành cho Sinh viên.
+                                Đặc biệt, không gian tại canteen của PTIT còn là địa điểm các bạn hay sử dụng để họp
+                                hành, chém gió…vô cùng vui vẻ nhé!
+                            </div>
+                        </div>
+                        <div class="pop">
+                            <img src="static/images/map/icon_place.svg">
+                        </div>
+                        <div class="effect" style="display: none;">
+                            <span></span><span></span>
+                        </div>
+                    </div>
+                    <div class="over people btnFile" id="floor-b5">
+                        <div class="typewriter">
+                            <h6>B5 dormitory</h6>
+                        </div>
+                        <div class="title_tooltip vpd" style="width: 380px;height: 246px">
+                            <div class="title-floor" style="margin-top:10px">
+                                <div class="header-title-floor">Văn phòng đoàn</div>
+                            </div>
+                            <div class="des-foor">
+                                Đoàn Thanh niên Học viện là đơn vị trực thuộc Đoàn Thanh niên Học viện CNBCVT
+                                Thông qua hoạt động của đơn vị, góp phần thực hiện nhiệm vụ hỗ trợ Học viện giải quyết
+                                các công việc đoàn vụ hằng ngày; là cầu nối hoạt động giữa Văn phòng Đoàn thanh niên với
+                                các đơn vị: Hội sinh viên, các LCĐ và các CLB, Tổ, Đội, Nhóm...
+                            </div>
+                        </div>
+                        <div class="pop">
+                            <img src="static/images/map/icon_place.svg">
+                        </div>
+                        <div class="effect" style="display: none;">
+                            <span></span><span></span>
+                        </div>
+                    </div>
+
+
+                    <div class="over people" id="right-slider">
+                        <div class="effect" style="display: none;">
+                            <span></span><span></span>
+                        </div>
+                        <!-- newsslide -->
+                        <div class="body" style="opacity: 1; margin-top: 0px;">
+                            <ul class="owl-carousel newsSlider">
+                                <li class="item btnFile">
+                                    <img class="slider-map" src="static/images/map/slider1.png">
+                                </li>
+                                <li class="item btnFile">
+                                    <img class="slider-map" src="static/images/map/slider2.png">
+                                </li>
+
+                                <li class="item btnFile">
+                                    <img class="slider-map" src="static/images/map/slider3.png">
+                                </li>
+                            </ul>
+                            <img id="news" src="static/images/map/tintuc.png" alt="News">
+                        </div>
+                    </div>
+
+                    <div class="over people" id="left-menu">
+                        <div class="effect" style="display: none;">
+                            <span></span><span></span>
+                        </div>
+                        <div class="body" style="opacity: 1; margin-top: 0px;">
+
+                            <div class="left-menu-map">
+                                <div class="container-menu">
+                                    <div class="child-contain-menu current-menu">
+                                        <div class="icon-child-menu">
+                                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                                 xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M19.5 18H19V7C19 6.4 18.6 6 18 6V5C18 4.4 17.6 4 17 4H14.5L10 0L5 4H3C2.4 4 2 4.4 2 5V6C1.4 6 1 6.4 1 7V18H0.5C0.2 18 0 18.2 0 18.5V19.5C0 19.8 0.2 20 0.5 20H19.5C19.8 20 20 19.8 20 19.5V18.5C20 18.2 19.8 18 19.5 18ZM9.7 2C10.3 2 10.7 2.4 10.7 3C10.7 3.6 10.3 4 9.7 4C9.2 4 8.7 3.6 8.7 3C8.7 2.4 9.1 2 9.7 2ZM6 16H3V13H6V16ZM6 11H3V8H6V11ZM12 18H8V15C8 13.9 8.9 13 10 13C11.1 13 12 13.9 12 15V18ZM12 11H8V8H12V11ZM17 16H14V13H17V16ZM17 11H14V8H17V11Z"
+                                                      fill="white"/>
+                                            </svg>
+                                        </div>
+                                        <div class="content-child-menu ">Campus and facilities</div>
+                                    </div>
+                                    <div class="child-contain-menu child-menu" id="kpb">
+                                        <div class="icon-child-menu">
+                                            <svg width="20" height="20" viewBox="0 0 28 28" fill="#7988a4"
+                                                 xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                      d="M18.8514 9.60483C18.8514 12.3461 16.666 14.5442 13.9406 14.5442C11.2151 14.5442 9.02972 12.3461 9.02972 9.60483C9.02972 6.86248 11.2151 4.6665 13.9406 4.6665C16.666 4.6665 18.8514 6.86248 18.8514 9.60483ZM13.9406 23.3332C9.93752 23.3332 6.51946 22.6985 6.51946 20.16C6.51946 17.6205 9.91558 16.9627 13.9406 16.9627C17.9436 16.9627 21.3617 17.5973 21.3617 20.1369C21.3617 22.6754 17.9655 23.3332 13.9406 23.3332ZM20.95 9.69396C20.95 11.0914 20.5332 12.3932 19.8019 13.4755C19.7267 13.5868 19.7936 13.7371 19.9262 13.7602C20.109 13.7917 20.2981 13.8096 20.4903 13.8148C22.4072 13.8653 24.1278 12.6244 24.6031 10.7562C25.3071 7.9813 23.2398 5.49008 20.6073 5.49008C20.3211 5.49008 20.0474 5.52055 19.781 5.57518C19.7445 5.58359 19.7058 5.6004 19.6849 5.63297C19.6598 5.6729 19.6786 5.72648 19.7037 5.76116C20.4945 6.87596 20.95 8.23557 20.95 9.69396ZM24.1246 15.7645C25.4127 16.0177 26.2599 16.5347 26.6108 17.2859C26.9075 17.9027 26.9075 18.6182 26.6108 19.2339C26.0739 20.3992 24.3429 20.7732 23.6702 20.8699C23.5313 20.8909 23.4195 20.7701 23.4341 20.6303C23.7778 17.4015 21.044 15.8706 20.3368 15.5186C20.3065 15.5029 20.3002 15.4787 20.3033 15.464C20.3054 15.4535 20.318 15.4367 20.3409 15.4335C21.8713 15.4051 23.5166 15.6153 24.1246 15.7645ZM7.50997 13.8147C7.70219 13.8094 7.89022 13.7926 8.07408 13.76C8.20675 13.7369 8.2736 13.5867 8.19839 13.4753C7.46714 12.3931 7.05033 11.0912 7.05033 9.69379C7.05033 8.2354 7.5058 6.87579 8.29659 5.76099C8.32166 5.72631 8.33942 5.67273 8.31539 5.6328C8.2945 5.60128 8.2548 5.58342 8.21928 5.57501C7.95186 5.52037 7.67816 5.4899 7.39193 5.4899C4.75945 5.4899 2.69211 7.98113 3.39724 10.7561C3.87255 12.6242 5.59307 13.8651 7.50997 13.8147ZM7.69645 15.4634C7.69958 15.4791 7.69332 15.5023 7.66407 15.5191C6.9558 15.871 4.22199 17.4019 4.56567 20.6297C4.5803 20.7705 4.46957 20.8903 4.33063 20.8703C3.65788 20.7737 1.92692 20.3996 1.38998 19.2344C1.09226 18.6176 1.09226 17.9031 1.38998 17.2864C1.74098 16.5351 2.58713 16.0181 3.87517 15.7639C4.48419 15.6157 6.12845 15.4056 7.65989 15.434C7.68287 15.4371 7.69436 15.4539 7.69645 15.4634Z"
+                                                "/>
+                                            </svg>
+                                        </div>
+                                        <div class="content-child-menu">Department and Faculty</div>
+                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M10.2083 15.4165L15.8333 9.7915L10.2083 4.1665" stroke="#7988A4"
+                                                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                    <div class="child-contain-menu child-menu" id="dtnc">
+                                        <div class="icon-child-menu">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="#7988a4"
+                                                 xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                      d="M10.7044 3.51898C10.034 3.51898 9.46373 3.9848 9.30365 4.61265H14.6863C14.5263 3.9848 13.956 3.51898 13.2856 3.51898H10.7044ZM16.2071 4.61264H18.1881C20.2891 4.61264 22 6.34428 22 8.47085C22 8.47085 21.94 9.3711 21.92 10.6248C21.918 10.724 21.8699 10.8212 21.7909 10.88C21.3097 11.2354 20.8694 11.5291 20.8294 11.5493C19.1686 12.6632 17.2386 13.447 15.1826 13.8369C15.0485 13.8632 14.9165 13.7934 14.8484 13.6739C14.2721 12.6754 13.1956 12.0253 11.995 12.0253C10.8024 12.0253 9.71586 12.6683 9.12256 13.6678C9.05353 13.7853 8.92346 13.8531 8.7904 13.8278C6.75138 13.4369 4.82141 12.6541 3.17059 11.5594L2.21011 10.8911C2.13007 10.8405 2.08004 10.7493 2.08004 10.6481C2.05003 10.1316 2 8.47085 2 8.47085C2 6.34428 3.71086 4.61264 5.81191 4.61264H7.78289C7.97299 3.1443 9.2036 2 10.7044 2H13.2856C14.7864 2 16.017 3.1443 16.2071 4.61264ZM21.6598 12.8152L21.6198 12.8355C19.5988 14.1924 17.1676 15.0937 14.6163 15.4684C14.2561 15.519 13.8959 15.2861 13.7959 14.9216C13.5758 14.0912 12.8654 13.5443 12.015 13.5443H12.005H11.985C11.1346 13.5443 10.4242 14.0912 10.2041 14.9216C10.1041 15.2861 9.74387 15.519 9.38369 15.4684C6.83242 15.0937 4.4012 14.1924 2.38019 12.8355C2.37019 12.8254 2.27014 12.7646 2.1901 12.8152C2.10005 12.8659 2.10005 12.9874 2.10005 12.9874L2.17009 18.1519C2.17009 20.2785 3.87094 22 5.97199 22H18.018C20.1191 22 21.8199 20.2785 21.8199 18.1519L21.9 12.9874C21.9 12.9874 21.9 12.8659 21.8099 12.8152C21.7599 12.7849 21.6999 12.795 21.6598 12.8152ZM12.7454 17.0583C12.7454 17.4836 12.4152 17.8177 11.995 17.8177C11.5848 17.8177 11.2446 17.4836 11.2446 17.0583V15.7519C11.2446 15.3367 11.5848 14.9924 11.995 14.9924C12.4152 14.9924 12.7454 15.3367 12.7454 15.7519V17.0583Z"/>
+                                            </svg>
+                                        </div>
+                                        <div class="content-child-menu">Education and Research</div>
+                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M10.2083 15.4165L15.8333 9.7915L10.2083 4.1665" stroke="#7988A4"
+                                                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                    <div class="child-contain-menu child-menu" id="tienichsv">
+                                        <div class="icon-child-menu">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="#7988a4"
+                                                 xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                      d="M17.1798 4.41C17.1798 3.08 18.2598 2 19.5898 2C20.9198 2 21.9998 3.08 21.9998 4.41C21.9998 5.74 20.9198 6.82 19.5898 6.82C18.2598 6.82 17.1798 5.74 17.1798 4.41ZM13.3297 14.7593L16.2197 11.0303L16.1797 11.0503C16.3397 10.8303 16.3697 10.5503 16.2597 10.3003C16.1507 10.0503 15.9097 9.8803 15.6507 9.8603C15.3797 9.8303 15.1107 9.9503 14.9497 10.1703L12.5307 13.3003L9.75969 11.1203C9.58969 10.9903 9.38969 10.9393 9.18969 10.9603C8.99069 10.9903 8.81069 11.0993 8.68969 11.2593L5.73069 15.1103L5.66969 15.2003C5.49969 15.5193 5.57969 15.9293 5.87969 16.1503C6.01969 16.2403 6.16969 16.3003 6.33969 16.3003C6.57069 16.3103 6.78969 16.1893 6.92969 16.0003L9.43969 12.7693L12.2897 14.9103L12.3797 14.9693C12.6997 15.1393 13.0997 15.0603 13.3297 14.7593ZM15.4497 3.7803C15.4097 4.0303 15.3897 4.2803 15.3897 4.5303C15.3897 6.7803 17.2097 8.5993 19.4497 8.5993C19.6997 8.5993 19.9397 8.5703 20.1897 8.5303V16.5993C20.1897 19.9903 18.1897 22.0003 14.7897 22.0003H7.40069C3.99969 22.0003 1.99969 19.9903 1.99969 16.5993V9.2003C1.99969 5.8003 3.99969 3.7803 7.40069 3.7803H15.4497Z"/>
+                                            </svg>
+                                        </div>
+                                        <div class="content-child-menu">Other Facilities and Services for students</div>
+                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M10.2083 15.4165L15.8333 9.7915L10.2083 4.1665" stroke="#7988A4"
+                                                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <!------------- Khối phòng ban ----------------->
+                                <div class="container-trangcon trangcon kpb">
+                                    <div class="child-contain-chil-menu">
+                                        <div class="icon-child-menu">
+                                            <img src="static/images/map/icon/btn-back.svg" alt="">
+                                        </div>
+                                        <div class="content-child-trangcon">Department and Faculty</div>
+                                    </div>
+                                    <div class="content-bottom">
+                                        <div class="container-bottom" id="phong_dt">
+                                            <div class="content-text">Training Division</div>
+                                            <div class="line"></div>
+                                        </div>
+                                        <div class="container-bottom" id="phong_gv">
+                                            <div class="content-text"> Academic / Educational Affairs Office</div>
+                                            <div class="line"></div>
+                                        </div>
+                                        <div class="container-bottom" id="phong_ctctsv">
+                                            <div class="content-text">Office of Student Affairs</div>
+                                            <div class="line"></div>
+                                        </div>
+                                        <div class="container-bottom" id="khoa_qtdtsdh">
+                                            <div class="content-text">Faculty of postgraduate training</div>
+                                            <div class="line"></div>
+                                        </div>
+                                        <div class="container-bottom" id="phong_tckt">
+                                            <div class="content-text">Division of Finance and Accounting</div>
+                                            <div class="line"></div>
+                                        </div>
+                                        <div class="container-bottom" id="phong_qlkhcn">
+                                            <div class="content-text">Office of Science Technology Management and
+                                                International Cooperation
+                                            </div>
+                                            <div class="line"></div>
+                                        </div>
+                                        <div class="container-bottom">
+                                            <div class="content-text">Division of Finance and Accounting</div>
+                                            <div class="line"></div>
+                                        </div>
+                                        <div class="container-bottom" id="ttkt">
+                                            <div class="content-text">Center Of Testing And Quality Assurance</div>
+                                            <div class="line"></div>
+                                        </div>
+                                        <div class="container-bottom" id="tttnth">
+                                            <div class="content-text">Center for Practical Experiments</div>
+                                            <div class="line"></div>
+                                        </div>
+                                        <div class="container-bottom" id="ttdtqt">
+                                            <div class="content-text">Center for International Education</div>
+                                            <div class="line"></div>
+                                        </div>
+                                        <div class="container-bottom" id="ttdv">
+                                            <div class="content-text">Service center</div>
+                                            <div class="line"></div>
+                                        </div>
+                                        <div class="container-bottom" id="ttkn">
+                                            <div class="content-text">Center for entrepreneurship and innovation</div>
+                                            <div class="line"></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!------------- Đào tạo NC ----------------->
+                                <div class="container-trangcon trangcon dtnc">
+                                    <div class="child-contain-chil-menu">
+                                        <div class="icon-child-menu">
+                                            <img src="static/images/map/icon/btn-back.svg" alt="">
+                                        </div>
+                                        <div class="content-child-trangcon">Education and Research</div>
+                                    </div>
+                                    <div class="content-bottom">
+                                        <div class="container-bottom" id="khoa_cb1">
+                                            <div class="content-text">Faculty of Fundamental Science 1</div>
+                                            <div class="line"></div>
+                                        </div>
+                                        <div class="container-bottom" id="khoa_cntt1">
+                                            <div class="content-text"> Faculty of Information Technology 1</div>
+                                            <div class="line"></div>
+                                        </div>
+                                        <div class="container-bottom" id="khoa_attt">
+                                            <div class="content-text">Faculty of Information Security</div>
+                                            <div class="line"></div>
+                                        </div>
+                                        <div class="container-bottom" id="khoa_vt1">
+                                            <div class="content-text">Faculty of Telecommunications 1</div>
+                                            <div class="line"></div>
+                                        </div>
+                                        <div class="container-bottom" id="khoa_ktdt1">
+                                            <div class="content-text">Faculty of Electronics Engineering 1</div>
+                                            <div class="line"></div>
+                                        </div>
+                                        <div class="container-bottom" id="khoa_qtkd1">
+                                            <div class="content-text">Faculty of Business Administration 1</div>
+                                            <div class="line"></div>
+                                        </div>
+                                        <div class="container-bottom" id="khoa_tckt">
+                                            <div class="content-text">Faculty of Finance and Accounting</div>
+                                            <div class="line"></div>
+                                        </div>
+                                        <div class="container-bottom" id="khoa_dpt">
+                                            <div class="content-text">Faculty of Multimedia</div>
+                                            <div class="line"></div>
+                                        </div>
+                                        <div class="container-bottom">
+                                            <div class="content-text">Faculty of Marketing</div>
+                                            <div class="line"></div>
+                                        </div>
+                                        <div class="container-bottom" id="cdit">
+                                            <div class="content-text">Institute of IT and Communications</div>
+                                            <div class="line"></div>
+                                        </div>
+                                        <div class="container-bottom" id="ttdt">
+                                            <div class="content-text">Training Center 1</div>
+                                            <div class="line"></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!------------- Tiện ích sinh viên ----------------->
+                                <div class="container-trangcon trangcon tienichsv" style="width:90%">
+                                    <div class="child-contain-chil-menu">
+                                        <div class="icon-child-menu">
+                                            <img src="static/images/map/icon/btn-back.svg" alt="">
+                                        </div>
+                                        <div class="content-child-trangcon">Other Facilities and Services for students
+                                        </div>
+                                    </div>
+                                    <div class="content-bottom">
+                                        <div class="container-bottom" id="vpclb">
+                                            <div class="content-text">Clubs for Students</div>
+                                            <div class="line"></div>
+                                        </div>
+                                        <div class="container-bottom" id="vpd">
+                                            <div class="content-text">The Institute Youth Union</div>
+                                            <div class="line"></div>
+                                        </div>
+                                        <div class="container-bottom" id="canteen">
+                                            <div class="content-text">Canteen</div>
+                                            <div class="line"></div>
+                                        </div>
+                                        <div class="container-bottom" id="tttttv">
+                                            <div class="content-text">Information Library Center</div>
+                                            <div class="line"></div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <img id="bg-menu" src="static/images/map/ip.png" alt="">
+                        </div>
+
+                    </div>
+
+                    <div class="bg">
+                        <div class="dialog_clb" id="dialog_clb">
+                            <div style="position: absolute;top: 24px;right: 24px;">
+                                <img style="cursor: pointer;width:24px;height:24px;" class="close_btn_clb"
+                                     src="static/images/trangcon/close.svg" alt="">
+                            </div>
+                            <div style="margin:40px 48px; height: calc(100% - 80px);
+                        width: calc(100% - 96px);position: relative;">
+                                <div class="header_clb">
+                                    Clubs for Students:
+                                </div>
+                                <div class="list_clb">
+                                    <ul class="contain_type_clb">
+                                        <li class="type_clb"> I. Academic Clubs:</li>
+                                        <ul>
+                                            <li class="child_clb"><a target="_blank"
+                                                                     href="https://www.facebook.com/clbmultimediaptit">1.
+                                                CLB Multimedia</a></li>
+                                            <li class="child_clb"><a target="_blank"
+                                                                     href="https://www.facebook.com/ITPTIT">2. CLB IT -
+                                                ITPTIT</a></li>
+                                            <li class="child_clb"><a target="_blank"
+                                                                     href="https://www.facebook.com/clubproptit">3. CLB
+                                                Lập trình - CLB ProPTIT</a></li>
+                                            <li class="child_clb"><a target="_blank"
+                                                                     href="https://www.facebook.com/ClbASCPTIT">4. CLB
+                                                Kế toán - CLB ASC</a></li>
+                                            <li class="child_clb"><a target="_blank"
+                                                                     href="https://www.facebook.com/elfsclubptit">5. CLB
+                                                Tiếng Anh - CLB ELFs</a></li>
+                                            <li class="child_clb"><a target="_blank"
+                                                                     href="https://www.facebook.com/ATTT.PTIT">6. CLB An
+                                                toàn thông tin - CLB ISP</a></li>
+                                            <li class="child_clb"><a target="_blank"
+                                                                     href="https://www.facebook.com/CLBDienTuPTIT"> 7.
+                                                CLB Điện tử PTIT - CLB EIE</a></li>
+                                        </ul>
+                                    </ul>
+                                    <ul class="contain_type_clb">
+                                        <li class="type_clb">II. Social Activities - Community:</li>
+                                        <ul>
+                                            <li class="child_clb"><a target="_blank"
+                                                                     href="https://www.facebook.com/CLBSVTNPTIT">1. CLB
+                                                Sinh Viên Tình Nguyện</a></li>
+                                            <li class="child_clb"><a target="_blank"
+                                                                     href="https://www.facebook.com/PtitQuayTitDaQuayLaTit">2.
+                                                Đội máu PTIT</a></li>
+                                            <li class="child_clb"><a target="_blank"
+                                                                     href="https://www.facebook.com/dcdptit">3. Đội Cờ
+                                                đỏ</a></li>
+                                        </ul>
+                                    </ul>
+                                    <ul class="contain_type_clb">
+                                        <li class="type_clb">III. Communications - Event:</li>
+                                        <ul>
+                                            <li class="child_clb"><a target="_blank"
+                                                                     href="https://www.facebook.com/CDAclub">1. CDA -
+                                                CLB những nhà quản trị năng động sáng tạo.</a></li>
+                                            <li class="child_clb"><a target="_blank"
+                                                                     href="https://www.facebook.com/S4C.club">2. S4C -
+                                                CLB Truyền thông & Kỹ năng mềm.</a></li>
+                                            <li class="child_clb"><a target="_blank"
+                                                                     href="https://www.facebook.com/somedia.vn.2016">3.
+                                                Sổ Media (CLB về chụp ảnh cũng như quay dựng media)</a></li>
+                                        </ul>
+                                    </ul>
+                                    <ul class="contain_type_clb">
+                                        <li class="type_clb">IV. Sports:</li>
+                                        <ul>
+                                            <li class="child_clb"><a target="_blank"
+                                                                     href="https://www.facebook.com/bongdabuuchinh">1.
+                                                CLB Bóng đá.</a></li>
+                                            <li class="child_clb"><a target="_blank"
+                                                                     href="https://www.facebook.com/BB.PTIT.CLUB">2. CLB
+                                                Bóng rổ.</a></li>
+                                            <li class="child_clb"><a target="_blank"
+                                                                     href="https://www.facebook.com/PTIT-H%C3%A0-N%E1%BB%99i-Volleyball-Club-105750407846364">3.
+                                                CLB Bóng chuyền.</a></li>
+                                            <li class="child_clb"><a target="_blank"
+                                                                     href="https://www.facebook.com/PTIT.Badminton">4.
+                                                CLB Cầu lông.</a></li>
+                                            <li class="child_clb"><a target="_blank"
+                                                                     href="https://www.facebook.com/taekwondo.ptit">5.
+                                                CLB Taekwondo.</a></li>
+                                            <li class="child_clb"><a target="_blank"
+                                                                     href="https://www.facebook.com/EMAPTIT">6. CLB Võ
+                                                thuật mở rộng - CLB EMA.</a></li>
+                                            <li class="child_clb"><a target="_blank"
+                                                                     href="https://www.facebook.com/ptitstreetworkout">7.
+                                                CLB Thể thao ngoài trời - PTIT Street Workout.</a></li>
+                                            <li class="child_clb"><a target="_blank"
+                                                                     href="https://www.facebook.com/escptithn">8. CLB
+                                                Thể thao điện tử.</a></li>
+                                        </ul>
+                                    </ul>
+                                    <ul class="contain_type_clb">
+                                        <li class="type_clb">V. Culture & Arts:</li>
+                                        <ul>
+                                            <li class="child_clb"><a target="_blank"
+                                                                     href="https://www.facebook.com/BnAPTIT">1. CLB Sách
+                                                và Hành động PTIT</a></li>
+                                            <li class="child_clb"><a target="_blank"
+                                                                     href="https://www.facebook.com/PGC.Guitar">2. CLB
+                                                Guitar</a></li>
+                                            <li class="child_clb"><a target="_blank"
+                                                                     href="https://www.facebook.com/Vhnt.ptit.hn">3. CLB
+                                                Văn Hóa - Nghệ Thuật.</a></li>
+                                            <li class="child_clb"><a target="_blank"
+                                                                     href="https://www.facebook.com/momusdancecrew">4.
+                                                Nhóm nhảy MOMUS Crew </a></li>
+                                            <li class="child_clb"><a target="_blank"
+                                                                     href="https://www.facebook.com/dff.ptitdanceclub">5.
+                                                Nhóm nhảy Dff  </a></li>
+                                        </ul>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="black_bg_clb"></div>
+                        <img src="static/images/map/bg-map.png" style="opacity: 0;">
+                    </div>
+                </div>
+            </div>
+    </main>
+    <footer></footer>
+
+</div>
+<iframe style="width:100vw;height:100vh;z-index:1;display: none;" id="modal_a1" src="" data-src="a1.html"
+        title="Tòa nhà A1">
+</iframe>
+<iframe style="width:100vw;height:100vh;z-index:1;display: none;" id="modal_a2" src="" data-src="a2.html"
+        title="Tòa nhà A2">
+</iframe>
+<iframe style="width:100vw;height:100vh;z-index:1;display: none;" id="modal_a3" src="" data-src="a3.html"
+        title="Tòa nhà A3">
+</iframe>
+<iframe style="width:100vw;height:100vh;z-index:1;display: none;" id="modal_vpmc" src="" data-src="vpmc.html"
+        title="Văn phòng một cửa">
+</iframe>
+
+</body>
+<script src="static/js/jquery.easing.1.3.js"></script>
+<script src="static/js/parallax.min.js"></script>
+<script src="static/js/owl.carousel.min.js"></script>
+<script src="static/js/scripts.js"></script>
+<script>
+    var isShowClb = 0;
+    var current_khoa = null;
+    $(document).ready(function () {
+        var isMobile = false; //initiate as false
+        if ((/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
+            window.location.href = "./map_mobile.html"
+        }
+    })
+    $('#loader').show();
+    $('.search-map').hide();
+    $('#web').hide();
+    window.onload = function () {
+        setTimeout(function () {
+            $('.search-map').show();
+            $('#web').show();
+            $('#loader').hide();
+            // runIntro();
+            $('#modal_a1').attr('src', $('#modal_a1').attr('data-src'))
+            $('#modal_a2').attr('src', $('#modal_a2').attr('data-src'))
+            $('#modal_a3').attr('src', $('#modal_a3').attr('data-src'))
+            $('#modal_vpmc').attr('src', $('#modal_vpmc').attr('data-src'))
+            initPage();
+            setTimeout(function () {
+                var list_class = localStorage.getItem("key");
+
+                if (list_class != null) {
+                    list_class = list_class.split(" ");
+                    if (list_class[1] == "1") {
+                        console.log("seached")
+                        $('#web').css({'display': 'none'});
+                        var iframe = $('#modal_' + list_class[2]);
+                        iframe.css({'display': 'block'});
+                    } else {
+                        //Xử lý search không trang con.
+                        $('#result').css({'display': 'none'});
+                        $('.black-bg').css({'display': 'none'});
+                        $('#web').css({'display': 'block'});
+
+                        $('.container-menu').css('display', 'none');
+                        $('.' + list_class[2]).css({'display': 'block'});
+                        $('.title_tooltip.' + list_class[3]).css({'display': 'block'});
+                        $(list_class[3] + ' .pop').className = 'pop active';
+                        let obj = parent.window.$('.' + list_class[3]).parent()
+                        if (!obj.find('.pop').hasClass('active')) {
+                            obj.find('.pop').addClass('active');
+                        }
+                        setTimeout(function () {
+                            localStorage.removeItem("key");
+                        }, 10);
+                    }
+                }
+                localStorage.setItem("load", 1);
+
+            }, 100);
+        }, 3000);
+    };
+
+    // Slider tin tức
+    $('.newsSlider').owlCarousel({
+        nav: false,
+        dots: true,
+        loop: true,
+        autoplay: true,
+        autoplayHoverPause: true,
+        responsive: {
+            0: {items: 1}
+        }
+    });
+
+    // function tìm kiếm
+
+    function myFunction(ele) {
+        var class_list = ele.getAttribute("class");
+        localStorage.setItem("key", class_list);
+        if (class_list != null) {
+            $('#result').css({'display': 'none'});
+            $('.black-bg').css({'display': 'none'});
+            class_list = class_list.split(" ");
+            if (class_list[1] == "1") {
+                $('#web').css({'display': 'none'});
+                var iframe = $('#modal_' + class_list[2]);
+                iframe.css({'display': 'block'});
+            } else {
+                //Xử lý search không trang con.
+                $('#result').css({'display': 'none'});
+                $('.black-bg').css({'display': 'none'});
+                $('#web').css({'display': 'block'});
+                $('.container-menu').css('display', 'none');
+                $('.' + class_list[2]).css({'display': 'block'});
+                $('.title_tooltip.' + class_list[3]).css({'display': 'block'});
+                let obj = $('.' + class_list[3]).parent()
+                if (!obj.find('.pop').hasClass('active')) {
+                    obj.find('.pop').addClass('active');
+                }
+
+                setTimeout(function () {
+                    localStorage.removeItem("key");
+                }, 10);
+            }
+        }
+    }
+
+    // Xử lý tìm kiếm
+    var current_search = 0;
+    $.ajaxSetup({cache: false});
+    $('#input_search').keyup(function () {
+        $('#result').css({'display': 'block'});
+        $('#result').html('');
+        var searchField = $('#input_search').val();
+        if (searchField == "") {
+            current_search = 0;
+            $('#result').append(' <div class="recommend_content" style="margin-top:12px"><div class="content-text 1 a2 tang9 khoa_cntt1" onclick="myFunction(this)"><div class="recommend_text "> Faculty of Information Technology</div>  </div> </div><div class="recommend_content"> <div class="content-text 1 a1 tang1 phong_gv" onclick="myFunction(this)"><div class="recommend_text"> Educational Affairs Office</div></div> </div><div class="recommend_content"><div class="content-text 1 a1 tang1 khoa_dpt" onclick="myFunction(this)">             <div class="recommend_text" >Faculty of Multimedia</div>  </div> </div>')
+            return
+        }
+        var expression = new RegExp(searchField, "i");
+        $.getJSON('./static/data.json', function (data) {
+            $('#result').html('');
+            $.each(data, function (key, value) {
+                if (value.name.search(expression) != -1) {
+                    current_search = 1;
+                    $('.no_result').remove();
+                    if (value.status == 1) {
+                        $('#result').append('<div class="recommend_content ' + value.status + ' ' + value.toa + ' ' + value.tang + ' ' + value.khoa + '" onclick="myFunction(this)"><div class="content-text"><div class="recommend_text">' + value.name + '</div></div></div>')
+                    } else {
+                        $('#result').append('<div class="recommend_content ' + value.status + ' ' + value.category + ' ' + value.id + '" onclick="myFunction(this)"><div class="content-text"><div class="recommend_text">' + value.name + '</div></div></div>')
+                    }
+                }
+                let list_recommend = document.querySelectorAll(".recommend_content");
+                if (list_recommend.length == 0) {
+                    current_search = 0;
+                    $('#result').append('<div class="recommend_content no_result"style="height: 48px;" ><div class="content-text" style="background-color: white;color: #3366FF;"><div style="height: 32px;">Từ khoá tìm kiếm không phù hợp, vui lòng tìm theo gợi ý dưới đây!</div></div></div> <div class="recommend_content" style="margin-top:12px"><div class="content-text 1 a2 tang9 khoa_cntt1" onclick="myFunction(this)"><div class="recommend_text "> Faculty of Information Technology</div>  </div> </div><div class="recommend_content"> <div class="content-text 1 a1 tang1 phong_gv" onclick="myFunction(this)"><div class="recommend_text"> Educational Affairs Office</div></div> </div><div class="recommend_content"><div class="content-text 1 a1 tang1 khoa_dpt" onclick="myFunction(this)">             <div class="recommend_text" >Faculty of Multimedia</div>  </div> </div>')
+                }
+            });
+        });
+    });
+
+    $(".next-to-trangcon").click(function () {
+        var class_list = $(this).parent().parent().attr('class');
+        localStorage.setItem("key", class_list);
+        $('#web').css({'display': 'none'});
+        class_list = class_list.split(" ");
+        $('#modal_' + class_list[2]).css({display: 'block', opacity: 0});
+        $('#modal_' + class_list[2]).animate({opacity: 1}, 300);
+    });
+
+    $("#input_search").focus(function () {
+        $('#result').css({'display': 'block'});
+        $('.black-bg').css({'display': 'block'});
+    });
+
+    $(".black-bg").click(function () {
+        $('#result').css({'display': 'none'});
+        $('.black-bg').css({'display': 'none'});
+    });
+
+    $(".icon-child-menu").click(function () {
+        $('.title_tooltip').css({'display': 'none'});
+    });
+    $(".bg").click(function () {
+        $('.title_tooltip').css({'display': 'none'});
+        $('.line').css({'background': '#E4E9F2'})
+        $('.content-text').css({'color': '#7988A4'})
+    });
+
+    //
+    var id_floor = null;
+    $('.child-menu').click(function () {
+        id_floor = $(this).attr('id');
+        $('.container-menu').css('display', 'none');
+        $('.' + id_floor).css({'display': 'block'});
+    });
+
+    $('#vpclb').click(function () {
+        console.log(isShowClb)
+        $('#dialog_clb').toggleClass('active')
+        isShowClb = 1 - isShowClb
+    });
+
+
+    $('.black_bg_clb').click(function () {
+        if (isShowClb == 1) {
+            $('#dialog_clb').toggleClass('active')
+            isShowClb = 0
+        }
+    });
+
+    $('.close_btn_clb').click(function () {
+        if (isShowClb == 1) {
+            $('#dialog_clb').toggleClass('active')
+            isShowClb = 0
+        }
+    });
+
+    $('.icon-child-menu').click(function () {
+        $(this).parent().parent().css('display', 'none');
+        $('.container-menu').css({'display': 'grid'});
+    });
+
+    $('.container-bottom').click(function () {
+        $('.btnFile').css({'z-index': 17});
+
+        $('.line').css({'background': '#E4E9F2'})
+        $('.content-text').css({'color': '#7988A4'})
+        $('.title_tooltip').css({'display': 'none'});
+        $(this).find('.content-text').css({'color': '#E23C47'})
+        $(this).find('.line').css({'background': '#E23C47'})
+        current_khoa = $(this).attr('id')
+        if (isShowClb == 1 && current_khoa != 'vpclb') {
+            $('#dialog_clb').removeClass('active')
+            isShowClb = 0
+        }
+        $('.' + current_khoa).css({'display': 'block'});
+        $('.' + current_khoa).parent().css({'z-index': 18});
+    });
+
+    $(".btn-a2").click(function () {
+        $('#web').css('display', 'none');
+        $('#modal_a2').css({display: 'block', opacity: 0});
+        $('#modal_a2').animate({opacity: 1}, 300);
+    })
+    $(".btn-a1").click(function () {
+        $('#web').css('display', 'none');
+        $('#modal_a1').css({display: 'block', opacity: 0});
+        $('#modal_a1').animate({opacity: 1}, 300);
+        gtag('send', 'click_a1');
+    })
+    $(".btn-a3").click(function () {
+        $('#web').css('display', 'none');
+        $('#modal_a3').css({display: 'block', opacity: 0});
+        $('#modal_a3').animate({opacity: 1}, 300);
+    })
+    $(".btn-vpmc").click(function () {
+        $('#web').css('display', 'none');
+        $('#modal_vpmc').css({display: 'block', opacity: 0});
+        $('#modal_vpmc').animate({opacity: 1}, 300);
+    })
+
+</script>
+</html>

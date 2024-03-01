@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="07117979-d8f6-4825-9d36-bbd174834095" name="Neosol" url="https://map.dtqt.edu.vn">
+        <fileTransfer rootFolder="/root/map.dtqt.edu.vn" accessType="SFTP" host="222.255.148.162" port="2232" sshConfigId="d05b7acc-6700-4b52-96a9-400ccf6af48d" sshConfig="root@222.255.148.162:2232 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

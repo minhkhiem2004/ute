@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/main.css">
+    <link rel="shortcut icon" href="static/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="static/images/favicon.ico" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script data-ad-client="ca-pub-5686560175039382" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <title>PTIT's map</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X2T95TX5VP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-X2T95TX5VP');
+    </script>
+</head>
+<body>
+    <div class="home-logo">
+      <img src="static/images/map/logo.webp" alt="" width="128px" height="160px">
+    </div>
+    <div class="bg-home">
+      <div class="content">
+        <div class="content-title">
+          Welcome to PTIT's MAP
+        </div>
+        <div class="content-place">
+          <svg id="search_btn" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+             <linearGradient id="paint0_linear" x1="16.0001" y1="2.66667" x2="16.0001" y2="29.3333" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#FF8989"/>
+                <stop offset="1" stop-color="#FA5252"/>
+            </linearGradient>
+            <linearGradient id="paint1_linear" x1="14.6668" y1="10.6667" x2="14.6668" y2="13.3333" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#FF8989"/>
+                <stop offset="1" stop-color="#FA5252"/>
+            </linearGradient>
+            <linearGradient id="paint2_linear" x1="12.6668" y1="16" x2="12.6668" y2="18.6667" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#FF8989"/>
+                <stop offset="1" stop-color="#FA5252"/>
+            </linearGradient>
+            <path id="path_search1" d="M28.5334 24.8L24.8001 21.0667C26.0001 19.2 26.6667 17.0667 26.6667 14.6667C26.6667 8 21.3334 2.66667 14.6667 2.66667C8.00008 2.66667 2.66675 8 2.66675 14.6667C2.66675 21.3333 8.00008 26.6667 14.6667 26.6667C17.0667 26.6667 19.2001 26 21.0667 24.8L24.8001 28.5333C25.8667 29.6 27.4667 29.6 28.5334 28.5333C29.6001 27.4667 29.6001 25.8667 28.5334 24.8ZM14.6667 24C9.46675 24 5.33341 19.8667 5.33341 14.6667C5.33341 9.46667 9.46675 5.33333 14.6667 5.33333C19.8667 5.33333 24.0001 9.46667 24.0001 14.6667C24.0001 19.8667 19.8667 24 14.6667 24Z"/>
+            <path id="path_search2" d="M18.6668 10.6667H10.6668C9.86683 10.6667 9.3335 11.3333 9.3335 12C9.3335 12.8 9.86683 13.3333 10.6668 13.3333H18.6668C19.4668 13.3333 20.0002 12.8 20.0002 12C20.0002 11.3333 19.4668 10.6667 18.6668 10.6667Z" />
+            <path id="path_search3"d="M14.6668 16H10.6668C9.86683 16 9.3335 16.5333 9.3335 17.3333C9.3335 18.1333 9.86683 18.6667 10.6668 18.6667H14.6668C15.4668 18.6667 16.0002 18.1333 16.0002 17.3333C16.0002 16.6667 15.4668 16 14.6668 16Z" />
+        </svg>
+          <input id="input_search" type="text" placeholder="Search department...">
+       </div>
+       <div id="under_search"style="height: 1px;background: #E4E9F2;margin-top: 8px;margin-left: 48px;margin-right: 48px;margin-bottom:16px;"></div>
+       <div class="search_recommend" id="result">
+        <div class="recommend_content" style="margin-top:36px">
+          <div class="content-text 1 a2 tang9 khoa_cntt1" onclick="myFunction(this)">     
+            <div class="recommend_text "> Faculty of Information Technology</div>
+          </div>
+          <div class="content-text 1 a1 tang1 khoa_dpt" onclick="myFunction(this)">            
+            <div class="recommend_text" >Faculty of Multimedia</div>
+          </div>
+          <div class="content-text 1 a1 tang1 phong_gv" onclick="myFunction(this)">
+            <div class="recommend_text"> Educational Affairs Office</div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-btn">
+        <button class="btn-thamquan" onclick="window.location.href='./map.html'">Visit map</button>
+      </div>
+      <div class="black-bg" style="width:100vw;height:100vh;overflow:hidden;z-index: 1;"></div>
+    </div>
+
+    </div>
+</body>
+<script>
+  $(document).ready(function () {
+  var isMobile = false; //initiate as false
+  if ((/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
+    window.location.href = "./mobile.html"
+  }
+})
+
+var current_search=0;
+    function myFunction(ele) {
+      console.log("click")
+        var class_list=ele.getAttribute("class");
+        localStorage.setItem("key",class_list);
+        setTimeout(function(){ 
+          window.location.href = "./map.html";
+          }, 10);
+    }
+
+    // Xử lý tìm kiếm
+    var current_search=0;
+$.ajaxSetup({ cache: false });
+    $('#input_search').keyup(function(){
+        $('#result').css( {'display': 'block'});
+        $('#result').html('');
+        var searchField = $('#input_search').val();
+        if(searchField==""){
+            current_search=0;
+            $('#result').append(' <div class="recommend_content" style="margin-top:12px"><div class="content-text 1 a2 tang9 khoa_cntt1" onclick="myFunction(this)"><div class="recommend_text "> Faculty of Information Technology</div>  </div> </div><div class="recommend_content"> <div class="content-text 1 a1 tang1 phong_gv" onclick="myFunction(this)"><div class="recommend_text"> Educational Affairs Office</div></div> </div><div class="recommend_content"><div class="content-text 1 a1 tang1 khoa_dpt" onclick="myFunction(this)">             <div class="recommend_text" >Faculty of Multimedia</div>  </div> </div>')
+            return
+        }
+        var expression = new RegExp(searchField, "i");
+        $.getJSON('./static/data.json', function(data) {
+            $('#result').html('');
+        $.each(data, function(key, value){
+            if (value.name.search(expression) != -1)
+            {
+            current_search=1;
+            $('.no_result').remove();
+                if(value.status==1){
+                $('#result').append('<div class="recommend_content '+value.status+' '+value.toa+' '+value.tang+' '+value.khoa+'" onclick="myFunction(this)"><div class="content-text"><div class="recommend_text">'+value.name+'</div></div></div>')    
+                }
+                else{
+                $('#result').append('<div class="recommend_content '+value.status+' '+value.category+' '+value.id+'" onclick="myFunction(this)"><div class="content-text"><div class="recommend_text">'+value.name+'</div></div></div>')    
+                }
+            }
+            let list_recommend=document.querySelectorAll(".recommend_content");
+            if(list_recommend.length==0){
+                current_search=0;
+                $('#result').append('<div class="recommend_content no_result"style="height: 48px;" ><div class="content-text" style="background-color: white;color: #3366FF;"><div style="height: 32px;">Từ khoá tìm kiếm không phù hợp, vui lòng tìm theo gợi ý dưới đây!</div></div></div> <div class="recommend_content" style="margin-top:12px"><div class="content-text 1 a2 tang9 khoa_cntt1" onclick="myFunction(this)"><div class="recommend_text "> Faculty of Information Technology</div>  </div> </div><div class="recommend_content"> <div class="content-text 1 a1 tang1 phong_gv" onclick="myFunction(this)"><div class="recommend_text"> Educational Affairs Office</div></div> </div><div class="recommend_content"><div class="content-text 1 a1 tang1 khoa_dpt" onclick="myFunction(this)">             <div class="recommend_text" >Faculty of Multimedia</div>  </div> </div>')
+            } 
+        });
+    });
+});
+
+
+  $( "#input_search").focus(function() {
+    $(".search_recommend").css("display", "block");
+    $("#path_search1").css("fill", "url(#paint0_linear)");
+    $("#path_search2").css("fill", "url(#paint1_linear)");
+    $("#path_search3").css("fill", "url(#paint2_linear)");
+    $("#under_search").css("background-color", "#E23C47");
+  });
+  $( ".black-bg").on('click', function() {
+    if(current_search==0){
+      $("#result").css("display", "none");
+    $("path").css("fill", "#7988A4;");
+    $("#under_search").css("background-color", "#E4E9F2");
+      }
+
+  });
+</script>
+</html>
